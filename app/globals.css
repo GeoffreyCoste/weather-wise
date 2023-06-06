@@ -23,3 +23,7 @@ body {
   background-color: rgb(var(--background-rgb));
   overflow: hidden;
 }
+
+#searchbar ul li:not(:last-child) {
+  border-bottom: 1px solid rgb(209, 213, 219); /* border-gray-300 */
+}
