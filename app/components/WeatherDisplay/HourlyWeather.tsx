@@ -14,7 +14,7 @@ export default function HourlyWeather({ timezone, hourly }: HourlyWeather) {
       <h3 className="text-lg font-bold mb-4">
         Hourly <span className="font-normal">Weather</span>
       </h3>
-      <div className="w-full flex flex-nowrap justify-between text-blue-700 pb-4 overflow-x-scroll snap-x snap-mandatory scrollbar-thin scrollbar-thumb-slate-500 hover:scrollbar-thumb-blue-700 scrollbar-thumb-rounded-lg scrollbar-track-slate-200 scrollbar-track-rounded-lg">
+      <div className="w-full flex flex-nowrap justify-between text-blue-700 md:pb-4 overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory md:scrollbar-thin md:scrollbar-thumb-slate-500 md:hover:scrollbar-thumb-blue-700 md:scrollbar-thumb-rounded-lg md:scrollbar-track-slate-200 md:scrollbar-track-rounded-lg">
         {hourly.length > 0 &&
           hourly.map((h: HourlyInterface, index: number) => (
             <div className="flex bg-white mr-2 p-2 rounded-lg snap-start" key={`${index}-98f7229d-24fc-4ed3-ba91-2fe8b2d69b7ae`}>

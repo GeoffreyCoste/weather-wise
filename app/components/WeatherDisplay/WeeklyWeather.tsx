@@ -12,23 +12,24 @@ interface WeeklyWeather {
 
 export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
   return (
-    <div id="weekly-weather" className="w-full flex flex-wrap bg-blue-50/50 text-blue-700 mb-4 px-4 pt-6 pb-8 rounded-lg">
+    <div id="weekly-weather" className="w-full bg-blue-50/50 text-blue-700 mb-4 px-4 pt-6 pb-8 rounded-lg">
       <h3 className="text-lg font-bold mb-4">
         Weekly <span className="font-normal">Weather</span>
       </h3>
 
-      {weekly.length > 0 &&
-        weekly.map((w: WeeklyInterface, index: number) => {
-          /* if (index == 0) {
-            return;
-          } */
-          let code = w.weatherCode;
-          let weatherDescription = weatherCodes[code];
+      <div className="w-full flex flex-nowrap md:flex-wrap justify-between text-blue-700 overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory">
+        {weekly.length > 0 &&
+          weekly.map((w: WeeklyInterface, index: number) => {
+            /* if (index == 0) {
+              return;
+            } */
+            let code = w.weatherCode;
+            let weatherDescription = weatherCodes[code];
 
-          return (
-            <div className="w-full basis-full" key={`${index}-53048a96-2343-4062-b420-fc1c8731236f`}>
-              <div className="flex bg-white text-blue-700 mb-4 p-4 rounded-lg">
-                <div className="basis-1/2">
+            return (
+            <div className="w-36 md:w-full flex bg-white mr-2 md:mr-0 md:mb-4 p-2 md:p-4 rounded-lg snap-start" key={`${index}-53048a96-2343-4062-b420-fc1c8731236f`}>
+              <div className="w-36 md:w-full flex flex-col md:flex-row">
+                <div className="basis-full md:basis-1/2 text-center md:text-start">
                   <div>
                     <h3 className="text-sm font-black">
                       {index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : moment(w.time).format('dddd')}
@@ -58,8 +59,8 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
                   </div> */}
                 </div>
 
-                <div className="basis-1/2 w-full flex">
-                  <div className="basis-1/2">
+                <div className="basis-full md:basis-1/2 flex flex-wrap md:flex-nowrap">
+                  <div className="basis-full md:basis-1/2">
                     <div>
                       {/* <Image
                         src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
@@ -68,7 +69,7 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
                       /> */}
                     </div>
                   </div>
-                  <div className="basis-1/2">
+                  <div className="basis-full md:basis-1/2 flex flex-col text-center md:text-start">
                     <h5 className="text-sm font-semibold first-letter:uppercase">{weatherDescription}</h5>
                     <div className="text-xs">
                       <span>&#9650; {w.tempMax.toFixed(0)}&deg;C</span>
@@ -80,6 +81,7 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
             </div>
           );
         })}
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import Searchbar from "./components/searchbar";
 export default function Home() {
 
   return (
-    <main className="w-1/2 flex flex-wrap justify-between mx-auto pt-4">
+    <main className="w-full md:w-3/4 lg:w-1/2 flex flex-wrap justify-between mx-auto px-4 md:px-0 pt-4">
       <Modal>
         <Searchbar placeholder="Search location" />
       </Modal>

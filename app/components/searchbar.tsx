@@ -53,7 +53,7 @@ export default function Searchbar({ placeholder }: SearchbarInterface) {
     }
 
     return (
-        <div id="searchbar" className="w-6/12 mx-auto">
+        <div id="searchbar" className="w-full md:w-6/12 mt-10 md:mt-0 mx-auto">
             <form id="search" className="relative w-full" role="search">
                 <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                     <svg className="w-5 h-5 text-gray-50 dark:text-gray-400" fill="#9ca3af" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>

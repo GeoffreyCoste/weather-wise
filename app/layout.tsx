@@ -1,6 +1,7 @@
 "use client"
 
 // TODO: try createPortal with '#modal-root' element
+// TODO: Disable cursor on mobile
 
 import './globals.css';
 import Header from './components/header';
