@@ -1,7 +1,16 @@
+import Image from "next/image";
+import Logo from '../public/logo.svg';
+
 export default function Header() {
     return(
         <header className="w-full flex justify-between items-center p-4">
-            <h1>Weather Wise</h1>
+            <Image
+                width={268}
+                height={75}
+                src={Logo}
+                alt="Weather Wise logo"
+                priority
+            />
             {/* <div className="max-w-2xl">
                 <form className="flex items-center">   
                     <label htmlFor="search-bar" className="sr-only">Search location</label>

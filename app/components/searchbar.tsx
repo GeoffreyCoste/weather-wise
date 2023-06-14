@@ -79,9 +79,9 @@ export default function Searchbar({ placeholder }: SearchbarInterface) {
                 {query.length > 3 && (
                     <ul className="absolute top-14 w-full bg-gray-50 px-5 py-3 rounded-lg shadow">
                         {results.length > 0 ? (
-                            results.map((city: CityInterface) => {
+                            results.map((city: CityInterface, index: number) => {
                                 return (
-                                    <li key={city.slug} className="w-full flex py-2" onClick={() => setQuery('')}>
+                                    <li key={`${index}-${city.slug}-491663bc-4024-434d-aae2-464b5c1695d1`} className="w-full flex py-2" onClick={() => setQuery('')}>
                                         <Link href={`/city/${city.slug}`} className="w-full hover:text-blue-700 hover:font-bold">
                                                 {city.name}
                                                 {city.state ? `, ${city.state}` : ''}{' '}

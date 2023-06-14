@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useRef } from 'react';
 import { useEscapeKey } from '../hooks/useEscapeKey';
 import Button from './button';
@@ -52,7 +54,7 @@ export default function Modal({ children }: ModalInterface) {
             <Button 
               type="button"
               id="modal-open-btn"
-              style="w-1/2 flex justify-between items-center bg-white hover:bg-blue-100 text-blue-600 font-semibold mx-auto mb-4 py-2 px-4 border border-blue-600 rounded-lg shadow" 
+              style="w-1/2 flex justify-between items-center bg-slate-50/25 hover:bg-slate-50/50 text-blue-600 font-semibold mx-auto mb-4 py-2 px-4 border border-2 border-white rounded-lg shadow" 
               onClick={showModal}
             >
               <div className="flex justify-between items-center space-x-4">

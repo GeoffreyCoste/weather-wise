@@ -4,9 +4,12 @@
 
 import './globals.css';
 import Header from './components/header';
-import { Inter } from 'next/font/google';
+import Cursor from './components/cursor';
+/* import { Roboto } from 'next/font/google'; */
+import { Quicksand } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] })
+/* const roboto = Roboto({ weight: ["100", "300", "400", "500", "700", "900"], subsets: ["latin"]}); */
+const quicksand = Quicksand({ weight: ["300", "400", "500", "600", "700"], subsets: ["latin"] });
 
 export const metadata = {
   title: 'Weather Wise',
@@ -20,7 +23,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={quicksand.className}>
+        <Cursor />
         <Header />
         {children}
         {/* <div id="modal-root"></div> */}
