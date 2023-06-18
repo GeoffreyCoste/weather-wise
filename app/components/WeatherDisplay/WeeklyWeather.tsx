@@ -1,25 +1,27 @@
+'use client'
+
 import React from "react";
 import moment from "moment-timezone";
 import Image from "next/image";
-import { WeeklyInterface } from "@/app/city/[slug]/page";
+import { WeeklyDataInterface } from "@/app/utils/interfaces/data.interface";
+import { WeeklyWeatherInterface } from '@/app/utils/interfaces/weather.interface'
 import { weatherCodes } from "@/app/city/[slug]/page";
-import { ObjectType } from "typescript";
+import { useTheme } from "@/app/utils/hooks/useTheme";
 
-interface WeeklyWeather {
-  timezone: string,
-  weekly: WeeklyInterface[],
-}
 
-export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
+
+export default function WeeklyWeather({timezone, weekly}: WeeklyWeatherInterface) {
+  const { theme } = useTheme();
+
   return (
-    <div id="weekly-weather" className="w-full bg-blue-50/50 text-blue-700 mb-4 px-4 pt-6 pb-8 rounded-lg">
+    <div id="weekly-weather" className={`w-1/2 ${theme === 'light' ? 'bg-blue-50/50 text-blue-700' : 'bg-blue-950 text-blue-300'} mb-4 px-4 pt-6 pb-8 rounded-lg`}>
       <h3 className="text-lg font-bold mb-4">
         Weekly <span className="font-normal">Weather</span>
       </h3>
 
-      <div className="w-full flex flex-nowrap md:flex-wrap justify-between text-blue-700 overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory">
+      <div className="w-full flex flex-nowrap md:flex-wrap justify-between overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory">
         {weekly.length > 0 &&
-          weekly.map((w: WeeklyInterface, index: number) => {
+          weekly.map((w: WeeklyDataInterface, index: number) => {
             /* if (index == 0) {
               return;
             } */
@@ -27,7 +29,7 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeather) {
             let weatherDescription = weatherCodes[code];
 
             return (
-            <div className="w-36 md:w-full flex bg-white mr-2 md:mr-0 md:mb-4 p-2 md:p-4 rounded-lg snap-start" key={`${index}-53048a96-2343-4062-b420-fc1c8731236f`}>
+            <div className={`w-36 md:w-full flex ${theme === 'light' ? 'bg-white text-blue-700' : 'bg-blue-700 text-white'} mr-2 md:mr-0 md:mb-4 p-2 md:p-4 rounded-lg snap-start`} key={`${index}-53048a96-2343-4062-b420-fc1c8731236f`}>
               <div className="w-36 md:w-full flex flex-col md:flex-row">
                 <div className="basis-full md:basis-1/2 text-center md:text-start">
                   <div>

@@ -1,11 +1,10 @@
-"use client"
-
 // TODO: try createPortal with '#modal-root' element
 // TODO: Disable cursor on mobile
 
 import './globals.css';
-import Header from './components/header';
-import Cursor from './components/cursor';
+import Header from './components/Header';
+import Cursor from './components/Cursor';
+import { ThemeProvider, TemperatureProvider, LanguageProvider } from './utils/context';
 /* import { Roboto } from 'next/font/google'; */
 import { Quicksand } from 'next/font/google';
 
@@ -26,8 +25,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={quicksand.className}>
         <Cursor />
-        <Header />
-        {children}
+        <ThemeProvider>
+          <LanguageProvider>
+            <TemperatureProvider>
+              <Header />
+              {children}
+            </TemperatureProvider>
+          </LanguageProvider>
+        </ThemeProvider>
         {/* <div id="modal-root"></div> */}
       </body>
     </html>

@@ -4,48 +4,18 @@ import TodayWeather from '@/app/components/WeatherDisplay/TodayWeather';
 import HourlyWeather from '@/app/components/WeatherDisplay/HourlyWeather';
 import WeeklyWeather from '@/app/components/WeatherDisplay/WeeklyWeather';
 import _cities from '../../../lib/city.list.json';
-import { CityInterface } from '@/app/components/searchbar';
+import { 
+  CityWeatherDataInterface,
+  TodayDataInterface,
+  CurrentDataInterface,
+  HourlyDataInterface,
+  WeeklyDataInterface 
+} from '../../utils/interfaces/data.interface';
+import { CityInterface } from '@/app/components/Searchbar';
 
 const cities = _cities as CityInterface[];
 
-export interface CityWeatherInterface {
-  cityName: string,
-  country: string,
-  timezone: string,
-  current: CurrentInterface,
-  today: TodayInterface,
-  hourly: HourlyInterface[],
-  weekly: WeeklyInterface[],
-}
 
-export interface TodayInterface {
-  tempMax: number,
-  tempMin: number,
-  sunrise: string,
-  sunset: string,
-  date: string,
-}
-
-export interface CurrentInterface {
-  temp: number, 
-  windSpeed: number, 
-  weatherCode: number, 
-  isDay: boolean, 
-  time: string,
-}
-
-export interface HourlyInterface {
-  time: string,
-  temp: number,
-  weatherCode: number
-}
-
-export interface WeeklyInterface {
-  time: string,
-  tempMax: number,
-  tempMin: number,
-  weatherCode: number
-}
 
 export const weatherCodes: {[key: number]: string} = {
   0: 'Clear sky',
@@ -105,14 +75,14 @@ export const formatApiData = async (slug: string) => {
 
   const name: string = city.name;
   const country: string = city.country;
-  const current: CurrentInterface = {
+  const current: CurrentDataInterface = {
     temp: dataOpenMeteo.current_weather.temperature,
     windSpeed: dataOpenMeteo.current_weather.windspeed,
     weatherCode: dataOpenMeteo.current_weather.weathercode,
     isDay: dataOpenMeteo.current_weather.is_day === 1 ? true: false,
     time: dataOpenMeteo.current_weather.time,
   };
-  const today: TodayInterface = {
+  const today: TodayDataInterface = {
     tempMax: dataOpenMeteo.daily.temperature_2m_max[0],
     tempMin: dataOpenMeteo.daily.temperature_2m_min[0],
     sunrise: dataOpenMeteo.daily.sunrise[0],
@@ -120,7 +90,7 @@ export const formatApiData = async (slug: string) => {
     date: dataOpenMeteo.daily.time,
   };
   
-  const hourly = dataOpenMeteo.hourly.time.map((t: string, index: number) => {
+  const hourly: HourlyDataInterface[] = dataOpenMeteo.hourly.time.map((t: string, index: number) => {
     return {
       time: t,
       temp: dataOpenMeteo.hourly.temperature_2m[index],
@@ -128,7 +98,7 @@ export const formatApiData = async (slug: string) => {
     }
   });
 
-  const weekly: WeeklyInterface[] = dataOpenMeteo.daily.time.map((t: string, index: number) => {
+  const weekly: WeeklyDataInterface[] = dataOpenMeteo.daily.time.map((t: string, index: number) => {
     return {
       time: t,
       tempMax: dataOpenMeteo.daily.temperature_2m_max[index],
@@ -175,13 +145,13 @@ export default function City({
   params: { slug: string }
 }) {
 
-  const cityWeather: CityWeatherInterface = use(formatApiData(params.slug));
+  const cityWeather: CityWeatherDataInterface = use(formatApiData(params.slug));
   // console.log('cityProps: ', cityProps)
   const { cityName, country, timezone, current, today, hourly, weekly } = cityWeather;
 
   return (
     <>
-      <section className="w-full">
+      <section className="w-full flex justify-center items-center">
         <TodayWeather 
           cityName={cityName}
           country={country}
@@ -190,13 +160,13 @@ export default function City({
           today={today}
         />
       </section>
-      <section className="w-full">
+      <section className="w-full flex justify-center items-center">
         <HourlyWeather 
           timezone={timezone}
           hourly={hourly}
         />
       </section>
-      <section className="w-full">
+      <section className="w-full flex justify-center items-center">
         <WeeklyWeather 
           timezone={timezone}
           weekly={weekly}

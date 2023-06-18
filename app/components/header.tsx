@@ -1,16 +1,40 @@
+'use client'
+
+import { useEffect } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import Logo from '../public/logo.svg';
+import { useLanguage } from "../utils/hooks/useLanguage";
+import { useTemperature } from "../utils/hooks/useTemperature";
+import { useTheme } from "../utils/hooks/useTheme";
+import LogoLight from '../public/logo_light.svg';
+import LogoDark from '../public/logo_dark.svg';
+import ThemeToggler from './ThemeToggler'
+import ContextCheckboxToggler from "./ContextCheckboxToggler";
 
 export default function Header() {
+    const { theme } = useTheme();
+    const {temperature, toggleTemperature } = useTemperature();
+    const { language, toggleLanguage } = useLanguage();
+
+    useEffect(() => {
+        console.log('temperature: ', temperature);
+        console.log('language: ', language);
+    })
+
     return(
-        <header className="w-full flex justify-between items-center p-4">
-            <Image
-                width={268}
-                height={75}
-                src={Logo}
-                alt="Weather Wise logo"
-                priority
-            />
+        <header className={`w-full flex justify-between items-center ${theme === "dark" ? "bg-blue-900" : ""} p-4`}>
+            <Link href="/" as="/">
+                <Image
+                    width="268"
+                    height="75"
+                    src={theme === 'light' ? LogoLight : LogoDark}
+                    alt="Weather Wise logo"
+                    priority
+                />
+            </Link>
+            <ContextCheckboxToggler context="language" state={language} toggleState={toggleLanguage} firstOption="FR" secondOption="EN" />
+            <ContextCheckboxToggler context="temperature" state={temperature} toggleState={toggleTemperature} firstOption="°C" secondOption="°F" />
+            <ThemeToggler />
             {/* <div className="max-w-2xl">
                 <form className="flex items-center">   
                     <label htmlFor="search-bar" className="sr-only">Search location</label>

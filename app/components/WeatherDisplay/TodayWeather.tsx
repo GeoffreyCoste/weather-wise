@@ -1,18 +1,11 @@
 import React from 'react';
 import Image from 'next/image';
 import moment from 'moment-timezone';
-import { weatherCodes, CurrentInterface, TodayInterface } from '@/app/city/[slug]/page';
+import { TodayWeatherInterface } from '@/app/utils/interfaces/weather.interface';
+import { weatherCodes } from '@/app/city/[slug]/page';
 
 
-interface TodayWeather {
-  cityName: string,
-  country: string,
-  timezone: string,
-  current: CurrentInterface,
-  today: TodayInterface,
-}
-
-export default function TodayWeather({ cityName, country, timezone, current, today }: TodayWeather) {
+export default function TodayWeather({ cityName, country, timezone, current, today }: TodayWeatherInterface) {
     // console.log('city: ', city);
     /* let today = moment(1686236400).format('dddd');
     console.log('day: ', today); */
@@ -35,7 +28,7 @@ export default function TodayWeather({ cityName, country, timezone, current, tod
     let code = current.weatherCode;
 
     return (
-        <div id="today-weather" className="w-full bg-gradient-to-tr from-blue-500 to-blue-700 text-white mb-4 px-4 pt-6 pb-8 rounded-lg">
+        <div id="today-weather" className="w-1/2 bg-gradient-to-tr from-blue-500 to-blue-700 text-white mb-4 px-4 pt-6 pb-8 rounded-lg">
           <div className="flex flex-wrap justify-between">
             <div className="basis-full flex justify-between">
                 {/* <div>

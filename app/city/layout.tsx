@@ -1,11 +1,14 @@
 'use client'
 
-import Modal from "../components/modal";
-import Searchbar from "../components/searchbar";
+import Modal from "../components/Modal";
+import Searchbar from "../components/Searchbar";
+import { useTheme } from "../utils/hooks/useTheme";
 
 export default function CityLayout({ children }: { children: React.ReactNode}) {
-    return (
-      <main className="w-full md:w-3/4 lg:w-1/2 flex flex-wrap justify-between mx-auto px-4 md:px-0 pt-4">
+  const { theme } = useTheme();
+
+  return (
+      <main className={`w-full flex flex-wrap justify-center items-center px-4 md:px-0 pt-4 ${ theme === "dark" ? "bg-blue-900" : ""}`}>
         <Modal>
           <Searchbar placeholder="Search location" />
         </Modal>

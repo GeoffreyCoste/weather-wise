@@ -4,15 +4,16 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-rgb: 219, 234, 254; /* #dbeafe */
+  --background-light-rgb: 219, 234, 254; /* #dbeafe */
+  --background-dark-rgb: 23, 37, 84; /* #172554 */
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-rgb: 0, 0, 0;
   }
-}
+} */
 
 * {
   cursor: none;
@@ -24,8 +25,12 @@ body {
   display: flex;
   flex-direction: column;
   color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
+  background-color: rgb(var(--background-light-rgb));
   /* overflow: hidden; */
+}
+
+[data-theme="dark"] body {
+  background-color: rgb(var(--background-dark-rgb));
 }
 
 /* clears the 'X' from Internet Explorer */
@@ -41,4 +46,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 #searchbar ul li:not(:last-child) {
   border-bottom: 1px solid rgb(209, 213, 219); /* border-gray-300 */
+}
+
+#theme-toggle:checked + #ball {
+	transform: translate(29px, -50%);
 }
