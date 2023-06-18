@@ -28,7 +28,7 @@ export default function TodayWeather({ cityName, country, timezone, current, tod
     let code = current.weatherCode;
 
     return (
-        <div id="today-weather" className="w-1/2 bg-gradient-to-tr from-blue-500 to-blue-700 text-white mb-4 px-4 pt-6 pb-8 rounded-lg">
+        <div id="today-weather" className="w-full md:w-1/2 bg-gradient-to-tr from-blue-500 to-blue-700 text-white mb-4 px-4 pt-6 pb-8 rounded-lg">
           <div className="flex flex-wrap justify-between">
             <div className="basis-full flex justify-between">
                 {/* <div>

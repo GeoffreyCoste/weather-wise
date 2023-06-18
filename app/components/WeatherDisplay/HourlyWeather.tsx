@@ -12,7 +12,7 @@ export default function HourlyWeather({ timezone, hourly }: HourlyWeatherInterfa
   const { theme } = useTheme();
 
   return (
-    <div id="hourly-weather" className={`w-1/2 ${theme === 'light' ? 'bg-blue-50/50 text-blue-700' : 'bg-blue-950 text-blue-300'}  mb-4 px-4 pt-6 pb-8 rounded-lg`}>
+    <div id="hourly-weather" className={`w-full md:w-1/2 ${theme === 'light' ? 'bg-blue-50/50 text-blue-700' : 'bg-blue-950 text-blue-300'}  mb-4 px-4 pt-6 pb-8 rounded-lg`}>
       <h3 className="text-lg font-bold mb-4">
         Hourly <span className="font-normal">Weather</span>
       </h3>
