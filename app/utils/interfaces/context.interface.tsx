@@ -12,7 +12,7 @@ export interface ContextInterface<StateType> {
     toggleState: (state: any) => void,
 } */
 
-export interface ToggleContextInterface extends ContextInterface<Language | Temperature | Theme> {
+export interface ToggleContextInterface extends ContextInterface<Language | Temperature> {
     context?: string,
     firstOption?: string,
     secondOption?: string,

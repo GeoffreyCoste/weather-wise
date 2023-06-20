@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { LanguageContext } from "../context";
-import { LanguageContextInterface } from "../interfaces";
+import { LanguageContextType } from "../@types/language";
 
 export const useLanguage = () => {
-    const { language, toggleLanguage } = useContext(LanguageContext) as LanguageContextInterface;
+    const { state, toggleState } = useContext(LanguageContext) as LanguageContextType;
+    const language = state;
+    const toggleLanguage = toggleState;
     return { language, toggleLanguage };
 }
