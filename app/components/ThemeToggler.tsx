@@ -3,7 +3,7 @@
 import { useTheme } from '../utils/hooks/useTheme';
 
 const ThemeToggler = () => {
-    const { theme, toggleTheme } = useTheme();
+    const { theme, toggleTheme } = useTheme(); // useTheme returns theme value as 'state' and theme state toggle function as 'toggleState'
 
     return (
         <label role="button" htmlFor="theme-toggle" className={`w-16 h-8 inline-block relative border-2 ${theme === 'light' ? 'border-blue-300' : 'border-blue-300'} rounded-full cursor-pointer`} onChange={() => toggleTheme(theme)}>

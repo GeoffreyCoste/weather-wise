@@ -2,10 +2,11 @@
 
 import { useContext } from 'react';
 import { ThemeContext } from '../context';
-import { ThemeContextInterface } from '../interfaces';
-
+import { ThemeContextType } from '../@types/theme';
 
 export const useTheme = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext) as ThemeContextInterface;
+    const { state, toggleState } = useContext(ThemeContext) as ThemeContextType;
+    const theme = state;
+    const toggleTheme = toggleState;
     return { theme, toggleTheme };
 }

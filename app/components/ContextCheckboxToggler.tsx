@@ -1,12 +1,12 @@
 'use client'
 
 import React, { useState } from "react";
-import { ContextInterface } from "../utils/interfaces";
+import { ToggleContextInterface } from "../utils/interfaces";
 import { useTheme } from "../utils/hooks/useTheme";
 
-const ContextCheckboxToggler = ({ context, state, toggleState, firstOption, secondOption}: ContextInterface) => {
+const ContextCheckboxToggler = ({ context, state, toggleState, firstOption, secondOption}: ToggleContextInterface) => {
 
-    const { theme } = useTheme();
+    const { theme } = useTheme(); 
 
     const [isChecked, setIsChecked] = useState(false);
 
