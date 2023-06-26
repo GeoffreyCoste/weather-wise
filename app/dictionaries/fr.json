@@ -1,0 +1,66 @@
+{
+    "home": {
+        "title": "Sélection de villes"
+    },
+    "city": {
+        "today": {
+            "title": {
+                "h3": "Météo",
+                "span": "du moment"
+            },
+            "content": {
+                "sunrise": "Lever du soleil",
+                "sunset": "Coucher du soleil"
+            }
+        },
+        "hourly": {
+            "title": {
+                "h3": "Météo",
+                "span": "heure par heure"
+            },
+            "content": {
+                "now": "Now"
+            }
+        },
+        "weekly": {
+            "title": {
+                "h3": "Météo",
+                "span": "sur 7 jours"
+            },
+            "content": {
+                "today": "Aujourd'hui",
+                "tomorrow": "Demain"
+            }
+        },
+        "codes": {
+            "0": "Dégagé",
+            "1": "Temps clair",
+            "2": "Intervalles nuageux",
+            "3": "Ciel nuageux",
+            "45": "Brouillard",
+            "48": "Brouillard givrant",
+            "51": "Légère bruine",
+            "53": "Bruine modérée",
+            "55": "Bruine dense",
+            "56": "Légère bruine verglaçante",
+            "57": "Bruine verglaçante dense",
+            "61": "Légères pluies",
+            "63": "Pluies modérées",
+            "65": "Fortes pluies",
+            "66": "Légères pluies verglaçantes",
+            "67": "Fortes pluies verglaçantes",
+            "71": "Légères chutes de neige",
+            "73": "Chutes de neige modérées",
+            "75": "Fortes chutes de neige",
+            "77": "Grains de neige",
+            "80": "Légères averses",
+            "81": "Averses modérées",
+            "82": "Averses violentes",
+            "85": "Légères averses de neige",
+            "86": "Fortes averses de neige",
+            "95": "Orages",
+            "96": "Orages avec grêle légère",
+            "99": "Orages avec forte grêle"
+        }
+    }
+}

@@ -1,8 +1,8 @@
 'use client'
 
-import Modal from "../components/Modal";
-import Searchbar from "../components/Searchbar";
-import { useTheme } from "../utils/hooks/useTheme";
+import Modal from "../../components/Modal";
+import Searchbar from "../../components/Searchbar";
+import { useTheme } from "../../utils/hooks/useTheme";
 
 export default function CityLayout({ children }: { children: React.ReactNode}) {
   const { theme } = useTheme();

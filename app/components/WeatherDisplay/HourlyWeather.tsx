@@ -8,13 +8,13 @@ import { useTheme } from "@/app/utils/hooks/useTheme";
 import { HourlyWeatherInterface } from '../../utils/interfaces/weather.interface'
 
 
-export default function HourlyWeather({ timezone, hourly }: HourlyWeatherInterface) {
+export default function HourlyWeather({ timezone, hourly, dictionary }: HourlyWeatherInterface) {
   const { theme } = useTheme();
 
   return (
     <div id="hourly-weather" className={`w-full md:w-1/2 ${theme === 'light' ? 'bg-blue-50/50 text-blue-700' : 'bg-blue-950 text-blue-300'}  mb-4 px-4 pt-6 pb-8 rounded-lg`}>
       <h3 className="text-lg font-bold mb-4">
-        Hourly <span className="font-normal">Weather</span>
+        {dictionary.city.hourly.title.h3} <span className="font-normal">{dictionary.city.hourly.title.span}</span>
       </h3>
       <div className="w-full flex flex-nowrap justify-between md:pb-4 overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory md:scrollbar-thin md:scrollbar-thumb-slate-500 md:hover:scrollbar-thumb-blue-700 md:scrollbar-thumb-rounded-lg md:scrollbar-track-slate-200 md:scrollbar-track-rounded-lg">
         {hourly.length > 0 &&
@@ -23,7 +23,7 @@ export default function HourlyWeather({ timezone, hourly }: HourlyWeatherInterfa
               <div className="w-10 flex flex-col justify-between items-center">
                 <span className={index === 0 ? "font-bold text-sm" : "text-sm"}>
                   {index == 0
-                    ? "Now"
+                    ? dictionary.city.hourly.content.now
                     : moment(h.time).format("h a")}
                 </span>
 

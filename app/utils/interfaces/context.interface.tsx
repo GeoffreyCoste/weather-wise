@@ -1,11 +1,11 @@
 import { Language } from "../@types/language";
 import { Temperature } from "../@types/temperature";
-import { Theme } from "../@types/theme";
-
+/* import { Theme } from "../@types/theme"; */
 
 export interface ContextInterface<StateType> {
-    state: StateType;
-    toggleState: (state: StateType) => void;
+    state: | StateType;
+    toggleState?: (state: StateType) => void;
+    handleStateChange?: (lang: Language) => void;
 }
 /* export interface ContextInterface {
     state: Language | Temperature,

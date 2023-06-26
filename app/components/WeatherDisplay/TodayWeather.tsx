@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import moment from 'moment-timezone';
 import { TodayWeatherInterface } from '@/app/utils/interfaces/weather.interface';
-import { weatherCodes } from '@/app/city/[slug]/page';
+/* import { weatherCodes } from '@/app/[lang]/city/[slug]/page'; */
 
 
-export default function TodayWeather({ cityName, country, timezone, current, today }: TodayWeatherInterface) {
+export default function TodayWeather({ cityName, country, timezone, current, today, dictionary }: TodayWeatherInterface) {
     // console.log('city: ', city);
     /* let today = moment(1686236400).format('dddd');
     console.log('day: ', today); */
@@ -39,7 +39,7 @@ export default function TodayWeather({ cityName, country, timezone, current, tod
                   {timeInTz.toUpperCase()}
                 </div> */}
                 <h3 className="text-lg font-bold mb-4">
-                  Currently <span className="font-normal">Weather</span>
+                  {dictionary.city.today.title.h3} <span className="font-normal">{dictionary.city.today.title.span}</span>
                 </h3>
             </div>
             <div className="basis-full flex rounded-lg">
@@ -54,17 +54,17 @@ export default function TodayWeather({ cityName, country, timezone, current, tod
                   </div>
                 </div>
 
-                <h3 className="font-bold first-letter:uppercase">{weatherCodes[code]}</h3>
+                <h3 className="font-bold first-letter:uppercase">{dictionary.city.codes[code]}</h3>
                 <div className="text-xs">
                   <div>
-                    <span>Sunrise: </span>
+                    <span>{dictionary.city.today.content.sunset}</span>
                     <span>
                       {moment(today.sunrise).format('h:mm a')}
                     </span>
                   </div>
 
                   <div>
-                    <span>Sunset: </span>
+                    <span>{dictionary.city.today.content.sunrise}</span>
                     <span>
                       {moment(today.sunset).format('h:mm a')}
                     </span>

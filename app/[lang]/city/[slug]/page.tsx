@@ -1,52 +1,20 @@
-import React, { use } from 'react';
 import { notFound } from 'next/navigation';
+import { getDictionary } from '@/app/utils/helpers/getDictionary';
+import { Locale } from "@/i18n-config";
 import TodayWeather from '@/app/components/WeatherDisplay/TodayWeather';
 import HourlyWeather from '@/app/components/WeatherDisplay/HourlyWeather';
 import WeeklyWeather from '@/app/components/WeatherDisplay/WeeklyWeather';
-import _cities from '../../../lib/city.list.json';
+import _cities from '../../../../lib/city.list.json';
 import { 
   CityWeatherDataInterface,
   TodayDataInterface,
   CurrentDataInterface,
   HourlyDataInterface,
   WeeklyDataInterface 
-} from '../../utils/interfaces/data.interface';
+} from '../../../utils/interfaces/data.interface';
 import { CityInterface } from '@/app/components/Searchbar';
 
 const cities = _cities as CityInterface[];
-
-
-
-export const weatherCodes: {[key: number]: string} = {
-  0: 'Clear sky',
-  1: 'Mainly clear',
-  2: 'Partly cloudy',
-  3: 'Overcast',
-  45: 'Fog',
-  48: 'Depositing rime fog',
-  51: 'Light drizzle',
-  53: 'Moderate drizzle',
-  55: 'Dense drizzle',
-  56: 'Light freezing drizzle',
-  57: 'Dense freezing drizzle',
-  61: 'Slight rain',
-  63: 'Moderate rain',
-  65: 'Heavy rain',
-  66: 'Light freezing rain',
-  67: 'Heavy freezing rain',
-  71: 'Slight snow fall',
-  73: 'Moderate snow fall',
-  75: 'Heavy snow fall',
-  77: 'Snow grains',
-  80: 'Slight rain showers',
-  81: 'Moderate rain showers',
-  82: 'Violent rain showers',
-  85: 'Slight snow showers',
-  86: 'Heavy snow showers',
-  95: 'Thunderstorm',
-  96: 'Thunderstorm with slight hail',
-  99: 'Thunderstorm with heavy hail',
-}
 
 export const formatApiData = async (slug: string) => {
   const city: any = getCityById(slug);
@@ -138,14 +106,15 @@ const getCityById = (slug: string) => {
   }
 };
 
-
-export default function City({
-  params
+export default async function City({
+  params: {lang, slug}
 }: {
-  params: { slug: string }
+  params: { lang: Locale, slug: string }
 }) {
 
-  const cityWeather: CityWeatherDataInterface = use(formatApiData(params.slug));
+  const dictionary = await getDictionary(lang);
+  console.log(slug);
+  const cityWeather: CityWeatherDataInterface = await formatApiData(slug);
   // console.log('cityProps: ', cityProps)
   const { cityName, country, timezone, current, today, hourly, weekly } = cityWeather;
 
@@ -158,18 +127,21 @@ export default function City({
           timezone={timezone}
           current={current}
           today={today}
+          dictionary={dictionary}
         />
       </section>
       <section className="w-full flex justify-center items-center">
         <HourlyWeather 
           timezone={timezone}
           hourly={hourly}
+          dictionary={dictionary}
         />
       </section>
       <section className="w-full flex justify-center items-center">
         <WeeklyWeather 
           timezone={timezone}
           weekly={weekly}
+          dictionary={dictionary}
         />
       </section>
     </>

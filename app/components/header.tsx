@@ -3,22 +3,23 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "../utils/hooks/useLanguage";
+/* import { useLanguage } from "../utils/hooks/useLanguage"; */
 import { useTemperature } from "../utils/hooks/useTemperature";
 import { useTheme } from "../utils/hooks/useTheme";
 import LogoLight from '../public/logo_light.svg';
 import LogoDark from '../public/logo_dark.svg';
 import ThemeToggler from './ThemeToggler'
 import ContextCheckboxToggler from "./ContextCheckboxToggler";
+import LocaleToggler from "./LocaleToggler";
 
 export default function Header() {
     const { theme } = useTheme();
     const {temperature, toggleTemperature } = useTemperature();
-    const { language, toggleLanguage } = useLanguage();
+    /* const { language, toggleLanguage } = useLanguage(); */
 
     useEffect(() => {
         console.log('temperature: ', temperature);
-        console.log('language: ', language);
+        /* console.log('language: ', language); */
     })
 
     return(
@@ -32,7 +33,8 @@ export default function Header() {
                     priority
                 />
             </Link>
-            <ContextCheckboxToggler context="language" state={language} toggleState={toggleLanguage} firstOption="FR" secondOption="EN" />
+            <LocaleToggler />
+            {/* <ContextCheckboxToggler context="language" state={language} toggleState={toggleLanguage} firstOption="FR" secondOption="EN" /> */}
             <ContextCheckboxToggler context="temperature" state={temperature} toggleState={toggleTemperature} firstOption="°C" secondOption="°F" />
             <ThemeToggler />
             {/* <div className="max-w-2xl">

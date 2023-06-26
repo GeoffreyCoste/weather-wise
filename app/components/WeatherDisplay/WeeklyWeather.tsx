@@ -2,21 +2,49 @@
 
 import React from "react";
 import moment from "moment-timezone";
+/* import { usePathname } from "next/navigation"; */
 import Image from "next/image";
 import { WeeklyDataInterface } from "@/app/utils/interfaces/data.interface";
 import { WeeklyWeatherInterface } from '@/app/utils/interfaces/weather.interface'
-import { weatherCodes } from "@/app/city/[slug]/page";
 import { useTheme } from "@/app/utils/hooks/useTheme";
 
-
-
-export default function WeeklyWeather({timezone, weekly}: WeeklyWeatherInterface) {
+export default function WeeklyWeather({timezone, weekly, dictionary}: WeeklyWeatherInterface) {
   const { theme } = useTheme();
 
+  /* const [currentLocale, setCurrentLocale] = useState('fr'); */
+  /* const pathname = usePathname();
+  const segments = pathname.split('/');
+  const locale = '"' + segments[1] + '"';
+  const m = moment(weekly[0].time).locale(locale);
+  console.log(m.day()); */
+  /* const handleCurrentLocale = () => {
+    const segments = pathname.split('/');
+    const locale = '"' + segments[1] + '"';
+    setCurrentLocale(locale);
+  } */
+
+  /* useEffect(() => { */
+    /* const segments = pathname.split('/');
+    const locale = '"' + segments[1] + '"';
+    moment.locale(locale);
+    console.log(moment.locale());
+    console.log(moment(weekly[0].time).format('dddd')) */
+    /* handleCurrentLocale();
+    moment.locale(currentLocale);
+    console.log(moment.locale());
+    console.log(moment(weekly[0].time).format('DDDD')) */
+    /* console.log(locale);
+    
+  }); */
+
+
+  /* console.log(currentLocale);
+
+  console.log('date: ', new Date(weekly[1].time).getTime()); */
   return (
     <div id="weekly-weather" className={`w-full md:w-1/2 ${theme === 'light' ? 'bg-blue-50/50 text-blue-700' : 'bg-blue-950 text-blue-300'} mb-4 px-4 pt-6 pb-8 rounded-lg`}>
       <h3 className="text-lg font-bold mb-4">
-        Weekly <span className="font-normal">Weather</span>
+        {dictionary.city.weekly.title.h3} <span className="font-normal">{dictionary.city.weekly.title.span}</span>
       </h3>
 
       <div className="w-full flex flex-nowrap md:flex-wrap justify-between overflow-x-scroll md:overflow-x-auto snap-x snap-mandatory">
@@ -26,7 +54,7 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeatherInterface
               return;
             } */
             let code = w.weatherCode;
-            let weatherDescription = weatherCodes[code];
+            let weatherDescription = dictionary.city.codes[code];
 
             return (
             <div className={`w-36 md:w-full flex ${theme === 'light' ? 'bg-white text-blue-700' : 'bg-blue-700 text-white'} mr-2 md:mr-0 md:mb-4 p-2 md:p-4 rounded-lg snap-start`} key={`${index}-53048a96-2343-4062-b420-fc1c8731236f`}>
@@ -34,13 +62,13 @@ export default function WeeklyWeather({timezone, weekly}: WeeklyWeatherInterface
                 <div className="basis-full md:basis-1/2 text-center md:text-start">
                   <div>
                     <h3 className="text-sm font-black">
-                      {index === 0 ? 'Today' : index === 1 ? 'Tomorrow' : moment(w.time).format('dddd')}
+                      {index === 0 ? dictionary.city.weekly.content.today : index === 1 ? dictionary.city.weekly.content.tomorrow : moment(w.time).format('dddd')}
                       
                       {/* {moment(weather.time).format('dddd')} */}
                     </h3>
 
                     <h4 className="text-xs">
-                      {moment(w.time).format('MMMM D')}
+                      {moment(w.time).format('LL')}
                     </h4>
                   </div>
 
